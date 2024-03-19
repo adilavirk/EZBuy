@@ -1,14 +1,27 @@
-// we have defined the products type here
-
 export interface ProductType {
   _id: number;
   title: string;
+  description: string;
+  image: string;
   price: number;
   previousPrice: number;
-  description: string;
-  category: string;
-  image: string;
   isNew: boolean;
   brand: string;
+  category: string;
   quantity: number;
+}
+
+export interface ItemProps {
+  item: ProductType;
+}
+
+export interface StateProps {
+  pro: {
+    productData: ProductType[];
+    userInfo: {};
+    orderData: {
+      order: ProductType[];
+    };
+    favoriteData: ProductType[];
+  };
 }
