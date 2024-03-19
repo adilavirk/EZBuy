@@ -5,11 +5,14 @@ import { ProductType } from "../../type";
 import Image from "next/image";
 import { Heart } from "lucide-react";
 import FormattedPrice from "./FormattedPrice";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/proSlice";
 interface Item {
   products: ProductType[];
 }
 
 const Product = ({ products }: Item) => {
+  const dispatch = useDispatch();
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mt-10">
       {products.map((item) => (
@@ -39,7 +42,10 @@ const Product = ({ products }: Item) => {
               <FormattedPrice amount={item?.price} />
             </p>
             <div className="flex items-center justify-between text-sm mt-2">
-              <button className="uppercase font-semibold hover:text-designColor duration-300">
+              <button
+                onClick={() => dispatch(addToCart(item))}
+                className="uppercase font-semibold hover:text-designColor duration-300"
+              >
                 Add to cart
               </button>
               <Link
