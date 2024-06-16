@@ -4,6 +4,9 @@ import { ProductType } from "../../../type";
 import Container from "@/components/Container";
 import Image from "next/image";
 import FormattedPrice from "@/components/FormattedPrice";
+
+import toast, { Toaster } from "react-hot-toast";
+import ProductDetailsAddToCartButton from "@/components/ProductDetailsAddToCartButton";
 type Props = {
   searchParams: {
     [key: string]: string | string[] | undefined;
@@ -19,6 +22,7 @@ const SingleProductPage = async ({ searchParams }: Props) => {
     return item;
   };
   const product = singleProduct(_id);
+
   return (
     <Container className="flex flex-col items-center md:flex-row px-4">
       <div className="w-full md:w-1/2 overflow-hidden bg-zinc-50 flex items-center justify-center p-10">
@@ -50,9 +54,9 @@ const SingleProductPage = async ({ searchParams }: Props) => {
           />{" "}
           from this product.
         </p>
-        <button className="bg-designColor/80 text-zinc-700 px-6 py-2 font-medium rounded-md hover:bg-designColor hover:text-black cursor-pointer duration-200 shadow-lg w-40 my-2 capitalize">
-          Add to cart
-        </button>
+        {/* todo */}
+        <ProductDetailsAddToCartButton products={product} />
+
         {product?.isNew && (
           <p className="text-designColor font-semibold ">New Arrival</p>
         )}
@@ -64,6 +68,15 @@ const SingleProductPage = async ({ searchParams }: Props) => {
         </p>
         <p>{product?.description}</p>
       </div>
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          style: {
+            background: "black",
+            color: "#fff",
+          },
+        }}
+      />
     </Container>
   );
 };

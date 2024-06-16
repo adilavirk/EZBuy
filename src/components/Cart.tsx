@@ -2,13 +2,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType, StateProps } from "../../type";
 import Image from "next/image";
-import deleteIcon from "../../public/icons/deleteIcon.svg";
+// import deleteIcon from "../../public/icons/deleteIcon.svg";
 import { Minus, Plus, X } from "lucide-react";
 import {
   decreaseQuantity,
   deleteProduct,
   increaseQuantity,
   resetCart,
+  resetFavorite,
 } from "@/redux/proSlice";
 import toast, { Toaster } from "react-hot-toast";
 import FormattedPrice from "./FormattedPrice";
@@ -71,7 +72,7 @@ const Cart = () => {
     if (response.ok) {
       // await dispatch(saveOrder({ order: productData, id: data.id }));
       stripe?.redirectToCheckout({ sessionId: data.id });
-      // dispatch(resetCart());
+      dispatch(resetFavorite());
     } else {
       throw new Error("Failed to create Stripe Payment");
     }

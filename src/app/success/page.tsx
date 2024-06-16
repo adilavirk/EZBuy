@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-const page = () => {
+const SuccessPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(resetCart());
@@ -32,4 +32,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SuccessPage;
